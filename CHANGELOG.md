@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 - 2026-09-25
+## 0.1.0 - 2026-09-24
 
 ### Added
 - `history.py` collects the range between two refs: commits, files, churn and issue numbers
