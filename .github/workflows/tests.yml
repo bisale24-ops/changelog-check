@@ -1,0 +1,29 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pytest
+      - run: PYTHONPATH=src python -m pytest tests -q
+
+  # the tool checking its own release notes, which is the point of it
+  dogfood:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: |
+          FIRST=$(git rev-list --max-parents=0 HEAD)
+          PYTHONPATH=src python -m changelogcheck.cli --from "$FIRST" --to HEAD \
+            --notes CHANGELOG.md --no-colour
