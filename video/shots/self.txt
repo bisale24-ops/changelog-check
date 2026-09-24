@@ -1,0 +1,34 @@
+SUPPORTED  6 of 6 claims
+  ✓ history.py collects the range between two refs: commits, files, churn and issue numbers
+      f240f872  A checker for release notes: evidence, silence, and claims with neither
+        .github/workflows/tests.yml, .gitignore, CHANGELOG.md +15 more
+        matched on file history.py, path history, identifier commits
+  ✓ notes.py cuts a release note into claims, dropping headings, fences and link definitions
+      f240f872  A checker for release notes: evidence, silence, and claims with neither
+        .github/workflows/tests.yml, .gitignore, CHANGELOG.md +15 more
+        matched on file notes.py, identifier notes, identifier claims
+  ✓ match.py decides a claim on evidence — issue numbers, flags, filenames, identifiers — and
+      f240f872  A checker for release notes: evidence, silence, and claims with neither
+        .github/workflows/tests.yml, .gitignore, CHANGELOG.md +15 more
+        matched on file match.py, identifier identifiers, path match
+  ✓ report.py prints three blocks and returns an exit code CI can act on, and writes the same
+      f240f872  A checker for release notes: evidence, silence, and claims with neither
+        .github/workflows/tests.yml, .gitignore, CHANGELOG.md +15 more
+        matched on file report.py, path report
+  ✓ --strict fails the build when a substantial change ships unmentioned
+      f240f872  A checker for release notes: evidence, silence, and claims with neither
+        .github/workflows/tests.yml, .gitignore, CHANGELOG.md +15 more
+        matched on flag --strict, identifier unmentioned, identifier strict
+  ✓ 15 tests that build git repositories on the spot, with no network
+      f240f872  A checker for release notes: evidence, silence, and claims with neither
+        .github/workflows/tests.yml, .gitignore, CHANGELOG.md +15 more
+        matched on identifier git
+
+SHIPPED WITHOUT A MENTION  0 commits
+  every substantial commit is covered by a claim
+
+NO EVIDENCE FOUND  0 claims
+  every claim rests on something in the diff
+
+fdec449ed92c025980880368205a297cf29cd2d7..HEAD: 1 commits, 869 insertions, 0 deletions
+Evidence is git history. A claim about behaviour this cannot see is reported as unverified, not as false.

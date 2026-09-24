@@ -1,0 +1,22 @@
+SUPPORTED  1 of 1 claims
+  ✓ Fix SSL case where verify=False together with client side certificates.
+      89599a95  Fix `verify=False`, `cert=...` case. (#3442)
+        CHANGELOG.md, httpx/_config.py
+        matched on identifier verify, identifier false
+      15e21e9e  Updating deprecated docstring Client() class (#3426)
+        httpx/_client.py
+        matched on path client
+
+SHIPPED WITHOUT A MENTION  2 commits
+  ? 0cb7e5a2  Bump the python-packages group with 11 updates (#3434)
+        requirements.txt
+        +11 −10
+  ? 8ecb86f0  Add test for request params behavior changes (#3364) (#3440)
+        CHANGELOG.md, tests/models/test_requests.py
+        +14 −0
+
+NO EVIDENCE FOUND  0 claims
+  every claim rests on something in the diff
+
+0.28.0..0.28.1: 5 commits, 34 insertions, 18 deletions
+Evidence is git history. A claim about behaviour this cannot see is reported as unverified, not as false.

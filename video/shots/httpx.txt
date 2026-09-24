@@ -1,0 +1,136 @@
+SUPPORTED  12 of 16 claims
+  ✓ Be aware that the default *JSON request bodies now use a more compact representation*. This is generally considered a prefered style, tho may require updates to test suites.
+      66225539  Cleanup `Request` method parameter. (#3378)
+        CHANGELOG.md, httpx/_models.py
+        matched on identifier request
+      7b19cd5f  Move utility functions from _utils.py to _client.py (#3389)
+        httpx/_client.py, httpx/_utils.py, tests/client/test_headers.py +1 more
+        matched on identifier request
+      12be5c44  add socks5h proxy support (#3178)
+        CHANGELOG.md, httpx/_config.py, httpx/_transports/default.py +1 more
+        matched on path default
+  ✓ *For users of the standard verify=True or verify=False cases, or verify=<ssl_context> case this should require no changes. The following cases have been deprecated...*
+      80960fa3  Version 0.28.0. (#3419)
+        CHANGELOG.md, httpx/_api.py, httpx/_client.py +3 more
+        matched on identifier ssl_context, identifier verify
+      1805ee0d  Graceful upgrade path for 0.28. (#3394)
+        CHANGELOG.md, docs/advanced/ssl.md, docs/contributing.md +8 more
+        matched on identifier ssl_context, identifier verify
+      8e36f2bc  Introduce new `SSLContext` API & escalate deprecations. (#3319)
+        .github/CONTRIBUTING.md, .github/workflows/test-suite.yml, CHANGELOG.md +26 more
+        matched on identifier ssl_context, identifier verify
+  ✓ The verify argument as a string argument is now deprecated and will raise warnings.
+      80960fa3  Version 0.28.0. (#3419)
+        CHANGELOG.md, httpx/_api.py, httpx/_client.py +3 more
+        matched on identifier verify
+      1805ee0d  Graceful upgrade path for 0.28. (#3394)
+        CHANGELOG.md, docs/advanced/ssl.md, docs/contributing.md +8 more
+        matched on identifier verify
+      8e36f2bc  Introduce new `SSLContext` API & escalate deprecations. (#3319)
+        .github/CONTRIBUTING.md, .github/workflows/test-suite.yml, CHANGELOG.md +26 more
+        matched on identifier verify
+  ✓ The cert argument is now deprecated and will raise warnings.
+      80960fa3  Version 0.28.0. (#3419)
+        CHANGELOG.md, httpx/_api.py, httpx/_client.py +3 more
+        matched on identifier cert
+      1805ee0d  Graceful upgrade path for 0.28. (#3394)
+        CHANGELOG.md, docs/advanced/ssl.md, docs/contributing.md +8 more
+        matched on identifier cert
+      8e36f2bc  Introduce new `SSLContext` API & escalate deprecations. (#3319)
+        .github/CONTRIBUTING.md, .github/workflows/test-suite.yml, CHANGELOG.md +26 more
+        matched on identifier cert
+  ✓ Our revised [SSL documentation](docs/advanced/ssl.md) covers how to implement the same behaviour with a more constrained API.
+      1805ee0d  Graceful upgrade path for 0.28. (#3394)
+        CHANGELOG.md, docs/advanced/ssl.md, docs/contributing.md +8 more
+        matched on file docs/advanced/ssl.md, path advanced, path ssl
+      8e36f2bc  Introduce new `SSLContext` API & escalate deprecations. (#3319)
+        .github/CONTRIBUTING.md, .github/workflows/test-suite.yml, CHANGELOG.md +26 more
+        matched on file docs/advanced/ssl.md, path advanced, path ssl
+      f06171fd  Revert "Removed leading $ from cli code blocks" (#3192)
+        README.md, docs/advanced/proxies.md, docs/contributing.md +2 more
+        matched on path advanced
+  ✓ The deprecated proxies argument has now been removed.
+      8e36f2bc  Introduce new `SSLContext` API & escalate deprecations. (#3319)
+        .github/CONTRIBUTING.md, .github/workflows/test-suite.yml, CHANGELOG.md +26 more
+        matched on identifier proxies
+      12be5c44  add socks5h proxy support (#3178)
+        CHANGELOG.md, httpx/_config.py, httpx/_transports/default.py +1 more
+        matched on path proxies
+      f06171fd  Revert "Removed leading $ from cli code blocks" (#3192)
+        README.md, docs/advanced/proxies.md, docs/contributing.md +2 more
+        matched on path proxies
+  ✓ JSON request bodies use a compact representation. (#3363)
+      9fd6f0ca  Ensure JSON representation is compact. #3363 (#3367)
+        httpx/_content.py, tests/client/test_auth.py, tests/models/test_requests.py +4 more
+        matched on issue #3363
+      66225539  Cleanup `Request` method parameter. (#3378)
+        CHANGELOG.md, httpx/_models.py
+        matched on identifier request
+      7b19cd5f  Move utility functions from _utils.py to _client.py (#3389)
+        httpx/_client.py, httpx/_utils.py, tests/client/test_headers.py +1 more
+        matched on identifier request
+  ✓ Review URL percent escape sets, based on WHATWG spec. (#3371, #3373)
+      ba2e5121  Review urlescape percent-safe set, and use + behavior for form spaces. (#3373)
+        httpx/_urlparse.py, httpx/_urls.py, tests/models/test_url.py
+        matched on issue #3373, identifier url
+      d293374b  Review URL percent escaping sets, from whatwg. (#3371)
+        httpx/_urlparse.py, tests/models/test_url.py
+        matched on issue #3371, path url
+      eeb5e3c2  Cleanup unneccessary test case (#3375)
+        tests/client/test_auth.py
+        matched on identifier url
+  ✓ Ensure certifi and httpcore are only imported if required. (#3377)
+      e9cabc8e  made dependencies on certifi and httpcore only load when required (#3377)
+        CHANGELOG.md, httpx/__version__.py, httpx/_config.py +4 more
+        matched on issue #3377
+  ✓ Treat socks5h as a valid proxy scheme. (#3178)
+      12be5c44  add socks5h proxy support (#3178)
+        CHANGELOG.md, httpx/_config.py, httpx/_transports/default.py +1 more
+        matched on issue #3178
+      3849e151  Add `httpx-socks` to third party packages. (#3326)
+        docs/third_party_packages.md
+        matched on identifier proxy
+      1805ee0d  Graceful upgrade path for 0.28. (#3394)
+        CHANGELOG.md, docs/advanced/ssl.md, docs/contributing.md +8 more
+        matched on identifier proxy
+  ✓ Cleanup Request() method signature in line with client.request() and httpx.request(). (#3378)
+      66225539  Cleanup `Request` method parameter. (#3378)
+        CHANGELOG.md, httpx/_models.py
+        matched on issue #3378, identifier request, path httpx
+      95a9527e  Add `httpx-ws` to third party packages. (#3325)
+        docs/third_party_packages.md
+        matched on identifier httpx
+      3849e151  Add `httpx-socks` to third party packages. (#3326)
+        docs/third_party_packages.md
+        matched on identifier httpx
+  ✓ Bugfix: When passing params={}, always strictly update rather than merge with an existing querystring. (#3364)
+      3f76571d  Concise URL instantiation. (#3364)
+        httpx/_models.py
+        matched on issue #3364
+
+SHIPPED WITHOUT A MENTION  4 commits
+  ? d4961b9f  Add speakeasy sponsorship (#3305)
+        docs/img/speakeasy.png, docs/overrides/partials/nav.html, mkdocs.yml
+        +55 −0
+  ? b47d94c9  Avoid private imports in test cases. (#3403)
+        tests/test_content.py
+        +8 −13
+  ? d46fa57a  Bump the python-packages group across 1 directory with 8 updates (#3292)
+        requirements.txt
+        +8 −8
+  ? 1bf1fc0e  Bump the python-packages group with 5 updates (#3329)
+        requirements.txt
+        +5 −5
+
+NO EVIDENCE FOUND  4 claims
+  ✗ The 0.28 release includes a limited set of deprecations...
+        looked for deprecations, includes, limited, set
+  ✗ We are working towards a simplified SSL configuration API.
+        looked for configuration, simplified, ssl, towards, working
+  ✗ **The following changes are also included**:
+        looked for following, included
+  ✗ The deprecated app argument has now been removed.
+        looked for argument, been, deprecated
+
+0.27.2..0.28.0: 34 commits, 1478 insertions, 1969 deletions
+Evidence is git history. A claim about behaviour this cannot see is reported as unverified, not as false.
