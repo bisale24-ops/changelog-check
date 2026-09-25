@@ -34,14 +34,18 @@ def main(argv=None):
     try:
         text = sys.stdin.read() if args.notes == "-" else check.read_notes(
             args.repo, args.notes, between=args.section)
-        result = check.run(args.repo, args.since, args.until, text, min_churn=args.min_churn)
+        result = check.run(args.repo, args.since, args.until, text,
+                           min_churn=args.min_churn,
+                           notes_path=(args.notes or "CHANGELOG.md"))
     except history.GitError as e:
         print(f"changelog-check: {e}", file=sys.stderr)
         return report.EXIT_BROKEN
 
     print(report.render_terminal(result, colour=not args.no_colour and sys.stdout.isatty()))
     if args.html:
-        pathlib.Path(args.html).write_text(report.render_html(result))
+        # link every sha back to the forge when there is one; the page stays offline either way
+        base = report.commit_url(args.repo)
+        pathlib.Path(args.html).write_text(report.render_html(result, base=base))
         print(f"\nreport written to {args.html}")
     return report.exit_code(result, strict=args.strict)
 

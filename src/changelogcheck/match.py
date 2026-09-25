@@ -97,14 +97,39 @@ def judge(claim, commits, min_strength=2):
     return {"supported": strength >= min_strength, "strength": strength, "hits": hits}
 
 
+BUMP = re.compile(r"^(?:bump|chore\(deps\)|build\(deps\)|update)\b.*\b(?:from|to|group|dependenc|"
+                  r"requirement|version)", re.I)
+TEST_PATH = re.compile(r"(^|/)(tests?|testing|spec)/|(^|/)(conftest|noxfile)\.py$|"
+                       r"(^|/)test_[^/]+\.py$|_test\.py$", re.I)
+NOTES_PATH = re.compile(r"(^|/)(CHANGELOG|CHANGES|NEWS|HISTORY|RELEASE[-_]?NOTES)"
+                        r"(\.(md|rst|txt))?$", re.I)
+
+
+def user_facing(commit):
+    """Did this commit change anything a release note would be expected to mention?
+
+    A dependency bump and a test-only change both ship, and neither belongs in a changelog. Calling
+    them unmentioned turns a correct changelog into a list of complaints, which is the failure that
+    makes the whole report ignorable.
+    """
+    if BUMP.match(commit.subject or ""):
+        return False
+    if commit.files and all(TEST_PATH.search(path) or NOTES_PATH.search(path)
+                            for path in commit.files):
+        # tests and the notes file itself: a commit that edited the changelog cannot have
+        # shipped without a mention in it
+        return False
+    return True
+
+
 def unmentioned(commits, judged, min_churn=10):
-    """Commits no claim reached, ignoring lockfile noise and pure version bumps."""
+    """Commits no claim reached, ignoring lockfile noise, dependency bumps and test-only work."""
     claimed = {commit.sha for verdict in judged for commit, _ in verdict["hits"]}
     out = []
     for commit in commits:
         if commit.sha in claimed or commit.merge or commit.noisy:
             continue
-        if commit.churn < min_churn:
+        if commit.churn < min_churn or not user_facing(commit):
             continue
         out.append(commit)
     out.sort(key=lambda c: -c.churn)

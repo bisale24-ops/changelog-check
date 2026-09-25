@@ -89,6 +89,18 @@ that lockfile churn is not reported as a silent change.
 
 CI runs the suite and then runs the tool against this repository's own release notes.
 
+## What is not "shipped without a mention"
+
+Three kinds of commit ship and do not belong in a changelog, and reporting them would turn a
+correct changelog into a list of complaints — the failure that makes the whole report ignorable:
+
+- a dependency bump (`Bump the python-packages group with 11 updates`);
+- a commit that touches only tests;
+- a commit that edited the release notes themselves, which by definition did not skip them.
+
+All three were found by running this against httpx's own history and checking each finding by
+hand. Lockfile churn was already excluded.
+
 ## Honest limits
 
 - It reasons about lines and commits, not behaviour. "Fixed the crash on startup" is matched

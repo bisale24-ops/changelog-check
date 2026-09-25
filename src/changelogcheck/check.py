@@ -32,7 +32,7 @@ def section_for(content, version):
     return "\n".join(out) if out else content
 
 
-def run(repo, since, until, notes_text, min_strength=2, min_churn=10):
+def run(repo, since, until, notes_text, min_strength=2, min_churn=10, notes_path="the notes"):
     commits = history.collect(repo, since, until)
     claim_list = notes.claims(notes_text)
     judged = []
@@ -47,6 +47,7 @@ def run(repo, since, until, notes_text, min_strength=2, min_churn=10):
                        "searched": searched})
     return {
         "range": f"{since}..{until}",
+        "notes_path": str(notes_path),
         "commits": commits,
         "claims": judged,
         "unmentioned": match.unmentioned(commits, [j["verdict"] for j in judged],
